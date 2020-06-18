@@ -24,7 +24,7 @@ public class Delitos implements Serializable {
 	@NotBlank(message = "No permite en blancos")
 	@NotEmpty(message = "No permiten vacios")
 	@Column(name = "nombreDelitos", length = 60, nullable = false)
-	private String nomDelitos;
+	private String nombreDelitos;
 	
 	@NotBlank(message = "No permite en blancos")
 	@NotEmpty(message = "No permiten vacios")
@@ -41,7 +41,7 @@ public class Delitos implements Serializable {
 			@NotBlank(message = "No permite en blancos") @NotEmpty(message = "No permiten vacios") String descripcion) {
 		super();
 		this.idDelitos = idDelitos;
-		this.nomDelitos = nomDelitos;
+		this.nombreDelitos = nomDelitos;
 		this.descripcion = descripcion;
 	}
 
@@ -54,11 +54,11 @@ public class Delitos implements Serializable {
 	}
 
 	public String getNomDelitos() {
-		return nomDelitos;
+		return nombreDelitos;
 	}
 
 	public void setNomDelitos(String nomDelitos) {
-		this.nomDelitos = nomDelitos;
+		this.nombreDelitos = nomDelitos;
 	}
 
 	public String getDescripcion() {
