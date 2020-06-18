@@ -3,14 +3,14 @@ package pe.gob.service;
 import java.util.List;
 import java.util.Optional;
 
-import pe.gob.model.Comisaria;
+import pe.gob.model.Delitos;
 
 public interface DelitosService {
 	
-	public Optional<Comisaria> listarId(int idComisaria);
+	public Optional<Delitos> listarId(int idDelitos);
 	
-	List<Comisaria> lista();
+	List<Delitos> lista();
 	
-	List<Comisaria> buscarNombre(String nomComisaria);
+	List<Delitos> buscarNombre(String nomDelitos);
 	
 }
