@@ -22,7 +22,7 @@ import pe.gob.service.ComisariaService;
 @Controller
 @RequestMapping("/comisaria")
 public class ComisariaController {
-	
+
 	@Autowired
 	private ComisariaService cService;
 	
