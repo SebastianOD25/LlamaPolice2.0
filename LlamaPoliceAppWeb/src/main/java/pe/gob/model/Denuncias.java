@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -31,7 +30,6 @@ public class Denuncias implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDenuncias;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="Lugar", nullable=false, length=30)
 	private String Lugar;
@@ -43,7 +41,6 @@ public class Denuncias implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaDenuncia;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="Descripcion", nullable=false, length=120)
 	private String Descripcion;
@@ -66,9 +63,9 @@ public class Denuncias implements Serializable {
 	}
 
 	public Denuncias(int idDenuncias,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String lugar,
-			@NotNull @Past(message = "No puedes seleccionar un dia que NO Existe") Date fechaDenuncoa,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String descripcion,
+			String lugar,
+			Date fechaDenuncoa,
+			String descripcion,
 			Delitos delitos, Comisaria comisaria, Persona persona) {
 		super();
 		this.idDenuncias = idDenuncias;

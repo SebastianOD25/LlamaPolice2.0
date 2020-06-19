@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Delitos")
@@ -22,12 +21,10 @@ public class Delitos implements Serializable {
 	private int idDelitos;
 	
 	@NotBlank(message = "No permite en blancos")
-	@NotEmpty(message = "No permiten vacios")
 	@Column(name = "nombreDelitos", length = 60, nullable = false)
 	private String nombreDelitos;
 	
 	@NotBlank(message = "No permite en blancos")
-	@NotEmpty(message = "No permiten vacios")
 	@Column(name = "descripcion", length = 70, nullable = false)
 	private String descripcion;
 
@@ -37,8 +34,8 @@ public class Delitos implements Serializable {
 	}
 
 	public Delitos(int idDelitos,
-			@NotBlank(message = "No permite en blancos") @NotEmpty(message = "No permiten vacios") String nomDelitos,
-			@NotBlank(message = "No permite en blancos") @NotEmpty(message = "No permiten vacios") String descripcion) {
+			String nomDelitos,
+			String descripcion) {
 		super();
 		this.idDelitos = idDelitos;
 		this.nombreDelitos = nomDelitos;

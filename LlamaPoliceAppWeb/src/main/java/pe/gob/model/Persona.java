@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -28,12 +27,10 @@ public class Persona implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="nombrePersona", nullable=false, length=30)
 	private String nombrePersona;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="dniPersona", nullable=false, length=8)
 	private int dni;
@@ -48,7 +45,6 @@ public class Persona implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date cumpleP;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="correoP", nullable=false, length=60)
 	private String correoP;
@@ -59,10 +55,10 @@ public class Persona implements Serializable{
 	}
 
 	public Persona(int idPersona,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String nomPersona,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") int dni,
-			int telef, @NotNull @Past(message = "No puedes seleccionar un dia que NO Existe") Date cumpleP,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String correoP) {
+			String nomPersona,
+			int dni,
+			int telef, Date cumpleP,
+			String correoP) {
 		super();
 		this.idPersona = idPersona;
 		this.nombrePersona = nomPersona;
