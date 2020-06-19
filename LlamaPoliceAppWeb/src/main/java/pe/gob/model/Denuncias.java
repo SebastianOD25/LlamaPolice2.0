@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -31,19 +30,17 @@ public class Denuncias implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDenuncias;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="Lugar", nullable=false, length=30)
-	private String lugar;
+	private String Lugar;
 	
 	@NotNull
 	@Past(message="No puedes seleccionar un dia que NO Existe")
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_de_denuncia")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date fechaDenuncoa;
+	private Date fechaDenuncia;
 	
-	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="Descripcion", nullable=false, length=120)
 	private String Descripcion;
@@ -66,14 +63,14 @@ public class Denuncias implements Serializable {
 	}
 
 	public Denuncias(int idDenuncias,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String lugar,
-			@NotNull @Past(message = "No puedes seleccionar un dia que NO Existe") Date fechaDenuncoa,
-			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String descripcion,
+			String lugar,
+			Date fechaDenuncoa,
+			String descripcion,
 			Delitos delitos, Comisaria comisaria, Persona persona) {
 		super();
 		this.idDenuncias = idDenuncias;
-		this.lugar = lugar;
-		this.fechaDenuncoa = fechaDenuncoa;
+		this.Lugar = lugar;
+		this.fechaDenuncia = fechaDenuncoa;
 		Descripcion = descripcion;
 		this.delitos = delitos;
 		this.comisaria = comisaria;
@@ -89,19 +86,19 @@ public class Denuncias implements Serializable {
 	}
 
 	public String getLugar() {
-		return lugar;
+		return Lugar;
 	}
 
 	public void setLugar(String lugar) {
-		this.lugar = lugar;
+		this.Lugar = lugar;
 	}
 
-	public Date getFechaDenuncoa() {
-		return fechaDenuncoa;
+	public Date getFechaDenuncia() {
+		return fechaDenuncia;
 	}
 
-	public void setFechaDenuncoa(Date fechaDenuncoa) {
-		this.fechaDenuncoa = fechaDenuncoa;
+	public void setFechaDenuncia(Date fechaDenuncia) {
+		this.fechaDenuncia = fechaDenuncia;
 	}
 
 	public String getDescripcion() {

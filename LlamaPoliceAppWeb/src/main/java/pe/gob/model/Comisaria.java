@@ -22,9 +22,8 @@ public class Comisaria implements Serializable {
 	private int idComisaria;
 	
 	@NotBlank(message = "No permite en blancos")
-	@NotEmpty(message = "No permiten vacios")
 	@Column(name = "nombreComisaria", length = 60, nullable = false)
-	private String nomComisaria;
+	private String nombreComisaria;
 	
 	@NotBlank(message = "No permite en blancos")
 	@NotEmpty(message = "No permiten vacios")
@@ -32,7 +31,6 @@ public class Comisaria implements Serializable {
 	private int numPolicias;
 	
 	@NotBlank(message = "No permite en blancos")
-	@NotEmpty(message = "No permiten vacios")
 	@Column(name = "direccionComisaria", length = 70, nullable = false)
 	private String direccion;
 
@@ -42,12 +40,12 @@ public class Comisaria implements Serializable {
 	}
 
 	public Comisaria(int idComisaria,
-			@NotBlank(message = "No permite en blancos") @NotEmpty(message = "No permiten vacios") String nomComisaria,
-			@NotBlank(message = "No permite en blancos") @NotEmpty(message = "No permiten vacios") int numPolicias,
-			@NotBlank(message = "No permite en blancos") @NotEmpty(message = "No permiten vacios") String direccion) {
+			String nomComisaria,
+			int numPolicias,
+			String direccion) {
 		super();
 		this.idComisaria = idComisaria;
-		this.nomComisaria = nomComisaria;
+		this.nombreComisaria = nomComisaria;
 		this.numPolicias = numPolicias;
 		this.direccion = direccion;
 	}
@@ -61,11 +59,11 @@ public class Comisaria implements Serializable {
 	}
 
 	public String getNomComisaria() {
-		return nomComisaria;
+		return nombreComisaria;
 	}
 
-	public void setNomComisaria(String nomComisaria) {
-		this.nomComisaria = nomComisaria;
+	public void setNomComisaria(String nombreComisaria) {
+		this.nombreComisaria = nombreComisaria;
 	}
 
 	public int getNumPolicias() {

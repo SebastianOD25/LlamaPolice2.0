@@ -18,35 +18,6 @@ public class ComisariaServiceImpl implements ComisariaService{
 	private ComisariaRepository rComisaria;
 
 	@Override
-	@Transactional
-	public boolean insertar(Comisaria comisaria) {
-		Comisaria objComisaria = rComisaria.save(comisaria);
-		if(objComisaria == null) {
-			return false;
-		}else
-		return true;
-	}
-
-	@Override
-	@Transactional
-	public boolean modificar(Comisaria comisaria) {
-		boolean flag = false;
-		try {
-			rComisaria.save(comisaria);
-			flag = true;
-		} catch (Exception ex) {
-			System.out.println("Ocurrio un error, intentelo de nuevo");
-		}
-		return flag;
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public void eliminar(int idComisaria) {
-		rComisaria.deleteById(idComisaria);
-	}
-
-	@Override
 	@Transactional(readOnly = true)
 	public Optional<Comisaria> listarId(int idComisaria) {
 		return rComisaria.findById(idComisaria);

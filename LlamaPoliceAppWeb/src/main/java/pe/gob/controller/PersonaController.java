@@ -1,6 +1,7 @@
 package pe.gob.controller;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,14 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.gob.model.Persona;
 import pe.gob.service.PersonaService;
 
 @Controller
-@RequestMapping("/Persona")
+@RequestMapping("/persona")
 public class PersonaController {
 	
 	@Autowired
@@ -43,6 +43,7 @@ public class PersonaController {
 		return "persona";
 	}
 	
+	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute @Valid Persona objPersona,
 		BindingResult binRes, Model model) throws ParseException{
 		if (binRes.hasErrors()) {
@@ -88,24 +89,30 @@ public class PersonaController {
 		}
 	}
 	
-	@RequestMapping("/eliminar")
-	private String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id ) {
-		try {
-			if (id!= null && id>0) {
-				pService.eliminar(id);
-				model.put("listaPersona", pService.listar());
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			model.put("listaPersona", "Ocurrio un error");
-		}
-		return "listPersona";
-	}
-	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaPersona", pService.listar());
-		return "listRace";
+		return "listPersona";
+	}
+	
+	@RequestMapping("/buscar")
+	public String buscar(Map<String, Object>model, @ModelAttribute Persona persona)
+	throws ParseException{
+		List<Persona> listaPersona;
+		persona.setNomPersona(persona.getNomPersona());
+		listaPersona = pService.buscarNombre(persona.getNomPersona());
+		
+		if(listaPersona.isEmpty()) {
+			model.put("mensaje", "No se encontró");
+		}
+		model.put("listaDenuncias", listaPersona);
+		return "buscar";
+	}
+	
+	@RequestMapping("/irBuscar")
+	public String irBuscar(Model model) {
+		model.addAttribute("persona",new Persona());
+		return "buscar";
 	}
 	
 }

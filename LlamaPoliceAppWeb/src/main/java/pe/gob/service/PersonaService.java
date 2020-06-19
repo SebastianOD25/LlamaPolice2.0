@@ -9,7 +9,6 @@ public interface PersonaService {
 	
 	public boolean insertar(Persona persona);
 	public boolean modificar(Persona persona);
-	public void eliminar(int idPersona);
 	public Optional<Persona> buscarId(int idPersona);
 	public Optional<Persona> listarId(int idPersona);
 	public List<Persona> listar();

@@ -31,7 +31,7 @@ public class DelitosController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaDelitos", cService.lista());
-		return "listRace";
+		return "listDelitos";
 	}
 	
 }
