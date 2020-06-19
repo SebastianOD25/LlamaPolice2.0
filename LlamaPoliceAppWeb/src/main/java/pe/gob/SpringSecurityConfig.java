@@ -25,7 +25,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private LoginSuccessHandler successHandler;
 	
-	/*@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		try {
 			http.authorizeRequests()
@@ -39,7 +39,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-	}*/
+	}
 	
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
 		build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
