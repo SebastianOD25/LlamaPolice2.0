@@ -45,7 +45,7 @@
 							</thead>
 							
 							<tbody>
-								<tr th:each="pol: ${listaPolicias">
+								<tr th:each="pol: ${listaPolicias}">
 									
 									<!-- th:text muestra una linea de texto -->
 									
@@ -55,7 +55,7 @@
 									<td th:text="${pol.rango}"></td>
 									<td th:text="${pol.nombrePolicia}"></td>
 									<td th:text="${#dates.format(pol.fechaNacimiento,'dd/MM/yyyy')}"></td>
-									<td th:text="${pol.comisaria.nomComisaria}"></td>
+									<td th:text="${pol.comisaria.nombreComisaria}"></td>
 								
 									<!-- th:href Redirecciona -->
 									

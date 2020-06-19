@@ -85,7 +85,7 @@
 						<label for="comisaria" class=" col-sm-2 col-form-label">COMISARIA: </label>
 						<select class="form-control" th:field="*{comisaria.idComisaria}">
 							<option th:each="c: ${listaComisaria}" th:value="${c.idComisaria}"
-									th:text="${c.nomComisaria}"
+									th:text="${c.nombreComisaria}"
 									th:selected="(${c.idComisaria} == *{comisaria.idComisaria})">
 							</option>
 						</select>
@@ -95,7 +95,7 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary">Aceptar</button>
-				<a href="/pet/listar" class="btn btn-danger">Cancelar</a>
+				<a href="/policia/listar" class="btn btn-danger">Cancelar</a>
 
 			</form>
 		</div>

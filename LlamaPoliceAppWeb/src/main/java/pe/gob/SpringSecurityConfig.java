@@ -29,11 +29,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		try {
 			http.authorizeRequests()
-				.antMatchers("/comisaria/**").access("hasRole('Usuario')")
-				.antMatchers("/delito/**").access("hasRole('Usuario')")
-				.antMatchers("/persona/**").access("hasRole('Usuario')")
-				.antMatchers("/policia/**").access("hasRole('Usuario')")
-				.antMatchers("/denuncias/**").access("hasRole('Usuario')").and()
+				.antMatchers("/comisaria/**").access("hasRole('ROLE_POLICE') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/delito/**").access("hasRole('ROLE_POLICE') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/persona/**").access("hasRole('ROLE_USER') or hasRole('ROLE_POLICE') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/policia/**").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/denuncias/**").access("hasRole('ROLE_USER')").and()
 				.formLogin().successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/persona/bienvenido")
 				.permitAll().and().logout().logoutSuccessUrl("/login").permitAll().and().exceptionHandling().accessDeniedPage("/error_403");
 			
