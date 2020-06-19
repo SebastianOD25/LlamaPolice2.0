@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,9 +30,11 @@ public class Policia implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPolicia;
 	
+	@Size(min = 6 ,max = 6)
 	@Column(name="placa", nullable=false, length=6)
 	private int placa;
 	
+	@Size(min = 8 ,max = 8)
 	@Column(name="dniPolicia", nullable=false, length=8)
 	private int dni;
 	

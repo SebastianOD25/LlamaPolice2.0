@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,9 +32,11 @@ public class Persona implements Serializable{
 	@Column(name="nombrePersona", nullable=false, length=30)
 	private String nombrePersona;
 	
+	@Size(min = 8 ,max = 8)
 	@Column(name="dniPersona", nullable=false, length=8)
 	private int dni;
 	
+	@Size(min = 9 ,max = 9)
 	@Column(name="telefPersona", nullable=false, length=9)
 	private int telef;
 	
