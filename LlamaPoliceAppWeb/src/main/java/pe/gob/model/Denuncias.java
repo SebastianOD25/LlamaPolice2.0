@@ -34,7 +34,7 @@ public class Denuncias implements Serializable {
 	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="Lugar", nullable=false, length=30)
-	private String lugar;
+	private String Lugar;
 	
 	@NotNull
 	@Past(message="No puedes seleccionar un dia que NO Existe")
@@ -72,7 +72,7 @@ public class Denuncias implements Serializable {
 			Delitos delitos, Comisaria comisaria, Persona persona) {
 		super();
 		this.idDenuncias = idDenuncias;
-		this.lugar = lugar;
+		this.Lugar = lugar;
 		this.fechaDenuncia = fechaDenuncoa;
 		Descripcion = descripcion;
 		this.delitos = delitos;
@@ -89,11 +89,11 @@ public class Denuncias implements Serializable {
 	}
 
 	public String getLugar() {
-		return lugar;
+		return Lugar;
 	}
 
 	public void setLugar(String lugar) {
-		this.lugar = lugar;
+		this.Lugar = lugar;
 	}
 
 	public Date getFechaDenuncoa() {

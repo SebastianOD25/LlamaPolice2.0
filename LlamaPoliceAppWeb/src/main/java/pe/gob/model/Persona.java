@@ -31,7 +31,7 @@ public class Persona implements Serializable{
 	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="nombrePersona", nullable=false, length=30)
-	private String nomPersona;
+	private String nombrePersona;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
@@ -65,7 +65,7 @@ public class Persona implements Serializable{
 			@NotEmpty(message = "No puede estar vacio") @NotBlank(message = "No puede estar en blanco") String correoP) {
 		super();
 		this.idPersona = idPersona;
-		this.nomPersona = nomPersona;
+		this.nombrePersona = nomPersona;
 		this.dni = dni;
 		this.telef = telef;
 		this.cumpleP = cumpleP;
@@ -81,11 +81,11 @@ public class Persona implements Serializable{
 	}
 
 	public String getNomPersona() {
-		return nomPersona;
+		return nombrePersona;
 	}
 
 	public void setNomPersona(String nomPersona) {
-		this.nomPersona = nomPersona;
+		this.nombrePersona = nomPersona;
 	}
 
 	public int getDni() {
