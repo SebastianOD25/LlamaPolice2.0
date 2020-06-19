@@ -39,6 +39,7 @@ public class PoliciaController {
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistroMascotas(Model model) {
+		model.addAttribute("listaComisaria", cService.lista());	
 		model.addAttribute("listaPolicias", pService.listar());		
 		model.addAttribute("policia", new Policia());
 		model.addAttribute("comisaria", new Comisaria());
