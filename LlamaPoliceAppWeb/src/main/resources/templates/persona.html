@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Persona</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/dueno.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/persona/registrar}" method="post" th:object="${persona}">
+			<div class="form-group">
+				<label for="idPersona">ID:</label> <input type="text"
+					class="form-control" th:field="*{idPersona}"></input>
+
+				<div class="form-group">
+					<label for="nombre">NOMBRE:</label> <input type="text"
+						th:field="*{nomPersona}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nomPersona')}" th:errors="*{nomPersona}"></div>
+				</div>
+				
+				<div class="form-group">
+					<label for="dni">DNI:</label> <input type="text"
+						th:field="*{dni}" class="form-control" id="dni"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+				</div>
+				
+				<label for="cumpleP">FECHA DE NACIMIENTO:</label> 
+						<input type="date" th:field="*{cumpleP}" class="form-control" id="cumpleP"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('cumpleP')}"
+								th:errors="*{cumpleP}">
+						</div>
+						
+				<div class="form-group">
+					<label for="correoP">CORREO:</label> <input type="text"
+						th:field="*{correoP}" class="form-control" id="correoP"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('correoP')}" th:errors="*{correoP}"></div>
+				</div>
+				
+				<div class="form-group">
+					<label for="correoP">TELEFONO:</label> <input type="text"
+						th:field="*{telef}" class="form-control" id="telef"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('telef')}" th:errors="*{telef}"></div>
+				</div>			
+				
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/dueno/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

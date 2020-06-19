@@ -20,7 +20,7 @@ import pe.gob.model.Persona;
 import pe.gob.service.PersonaService;
 
 @Controller
-@RequestMapping("/Persona")
+@RequestMapping("/persona")
 public class PersonaController {
 	
 	@Autowired
@@ -43,6 +43,7 @@ public class PersonaController {
 		return "persona";
 	}
 	
+	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute @Valid Persona objPersona,
 		BindingResult binRes, Model model) throws ParseException{
 		if (binRes.hasErrors()) {
@@ -105,7 +106,7 @@ public class PersonaController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaPersona", pService.listar());
-		return "listRace";
+		return "listPersona";
 	}
 	
 }
