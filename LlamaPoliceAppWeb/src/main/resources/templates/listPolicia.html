@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title>Policias</title>
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css"></link>
+				
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+
+	<body>
+	
+		<div th:replace="fragments/header :: header"></div>
+
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						
+						<a 	style="border-bottom-color: green" th:href="@{/policia/irRegistrar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left-block"> 
+							<span class="glyphicon glyphicon-plus"></span> Policia
+						</a>
+						
+					
+						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+							
+							<thead>
+								<tr>
+									<th class="text-center">CODIGO</th>
+									<th class="text-center">PLACA</th>
+									<th class="text-center">DNI</th>
+									<th class="text-center">RANGO</th>
+									<th class="text-center">NOMBRE</th>									
+									<th class="text-center">FECHA</th>									
+									<th class="text-center">COMISARIA</th>
+									<th class="text-center">OPERACIÓN</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="pol: ${listaPolicias">
+									
+									<!-- th:text muestra una linea de texto -->
+									
+									<td th:text="${pol.idPolicia}"></td>
+									<td th:text="${pol.placa}"></td>
+									<td th:text="${pol.dni}"></td>
+									<td th:text="${pol.rango}"></td>
+									<td th:text="${pol.nombrePolicia}"></td>
+									<td th:text="${#dates.format(pol.fechaNacimiento,'dd/MM/yyyy')}"></td>
+									<td th:text="${pol.comisaria.nomComisaria}"></td>
+								
+									<!-- th:href Redirecciona -->
+									
+									<td><a th:href="@{/policia/eliminar?id=}+${pol.idPolicia}">Eliminar</a></td>
+									<td><a th:href="@{'/policia/modificar/' +${pol.idPolicia}}">Modificar</a></td>
+								</tr>
+							</tbody>
+
+						</table>
+
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div th:replace="fragments/footer :: footer"></div>
+
+	</body>
+	
+</html>
