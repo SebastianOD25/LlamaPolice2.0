@@ -26,6 +26,7 @@ public class LlamaPoliceAppWebApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		String password = "camion";
 		String contra = "luis0101";
+		String contraseña = "admin";
 		
 		for(int i=0; i<2; i++) {
 			String bcryptPassword = passwordEncoder.encode(password);
@@ -35,6 +36,10 @@ public class LlamaPoliceAppWebApplication implements CommandLineRunner{
 		for(int i=0; i<2; i++) {
 			String bcryptPassword2 = passwordEncoder.encode(contra);
 			System.out.println(bcryptPassword2);
+		}
+		for(int i=0; i<2; i++) {
+			String bcryptPassword3 = passwordEncoder.encode(contraseña);
+			System.out.println(bcryptPassword3);
 		}
 		
 	}
