@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pe.gob.model.Comisaria;
 import pe.gob.model.Delitos;
 import pe.gob.model.Denuncias;
+import pe.gob.model.Persona;
 import pe.gob.service.ComisariaService;
 import pe.gob.service.DelitosService;
 import pe.gob.service.IDenunciasService;
+import pe.gob.service.PersonaService;
 
 @Controller
 @RequestMapping("/denuncias")
@@ -31,6 +33,9 @@ public class DenunciaController {
 	
 	@Autowired
 	private DelitosService dService;
+	
+	@Autowired
+	private PersonaService aService;
 		
 	@RequestMapping("/")
 	public String irPaginaListadoDenuncias(Map<String, Object> model) {
@@ -41,8 +46,10 @@ public class DenunciaController {
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistroMascotas(Model model) {
 		model.addAttribute("listaComisaria", cService.lista());
+		model.addAttribute("listaPersona", aService.listar());
 		model.addAttribute("listaDelitos", dService.lista());		
 		model.addAttribute("comisaria", new Comisaria());
+		model.addAttribute("persona", new Persona());
 		model.addAttribute("denuncias", new Denuncias());
 		model.addAttribute("delitos", new Delitos());
 		return "denuncia";

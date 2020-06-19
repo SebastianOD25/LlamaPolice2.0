@@ -40,7 +40,7 @@
 			
 				<div class="form-group">
 					
-					<label for="idDenuncias">ID:</label> 
+					<label for="idDelito">ID:</label> 
 					<input type="text" class="form-control" th:field="*{idDenuncias}"></input>
 
 					<div class="form-group">
@@ -52,14 +52,14 @@
 								th:errors="*{lugar}">
 						</div>
 
-						<label for="fechaDenuncia">FECHA DEL DELITO:</label> 
-						<input type="date" th:field="*{fechaDenuncia}" class="form-control" id="fechaDenuncia"></input>
+						<label for="fecha_de_denuncia">FECHA DEL DELITO:</label> 
+						<input type="date" th:field="*{fechaDenuncia}" class="form-control" id="fecha_de_denuncia"></input>
 						
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('fechaDenuncia')}"
 								th:errors="*{fechaDenuncia}">
 						</div>
 						
-						<label 	for="descripcion">DESCRIPCION BREVE:</label> 
+						<label 	for="Descripcion">DESCRIPCION BREVE:</label> 
 						<input type="text" th:field="*{Descripcion}" class="form-control" id="Descripcion"></input>
 												
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('Descripcion')}" 
@@ -68,25 +68,25 @@
 						
 						<label for="persona" class=" col-sm-2 col-form-label">PERSONA: </label>
 						<select class="form-control" th:field="*{persona.idPersona}">
-							<option th:each="p: ${listaPersonas}" th:value="${p.idPersona}"
+							<option th:each="p: ${listaPersona}" th:value="${p.idPersona}"
 									th:text="${p.nomPersona}"
 									th:selected="(${p.idPersona} == *{persona.idPersona})">
 							</option>
 						</select>
 					
-						<label for="delito" class=" col-sm-2 col-form-label">DELITO: </label>
-						<select class="form-control" th:field="*{delito.idDelito}">
-							<option th:each="d: ${listaDelitos}" th:value="${d.idDelito}"
-									th:text="${d.nomDelito}"
-									th:selected="(${d.idDelito} == *{delitos.idDelito})">
+						<label for="delitos" class=" col-sm-2 col-form-label">DELITO: </label>
+						<select class="form-control" th:field="*{delitos.idDelitos}">
+							<option th:each="d: ${listaDelitos}" th:value="${d.idDelitos}"
+									th:text="${d.nomDelitos}"
+									th:selected="(${d.idDelitos} == *{delitos.idDelitos})">
 							</option>
 						</select>
 						
 						<label for="comisaria" class=" col-sm-2 col-form-label">COMISARIA: </label>
 						<select class="form-control" th:field="*{comisaria.idComisaria}">
-							<option th:each="c: ${listaComisarias}" th:value="${c.idComisaria}"
-									th:text="${c.nomComisarias}"
-									th:selected="(${c.idComisarias} == *{comisaria.idComisaria})">
+							<option th:each="c: ${listaComisaria}" th:value="${c.idComisaria}"
+									th:text="${c.nomComisaria}"
+									th:selected="(${c.idComisaria} == *{comisaria.idComisaria})">
 							</option>
 						</select>						
 					</div>

@@ -45,7 +45,7 @@
 							</thead>
 							
 							<tbody>
-								<tr th:each="p: ${listaDenuncias}">
+								<tr th:each="den: ${listaDenuncias}">
 									
 									<!-- th:text muestra una linea de texto -->
 									
@@ -54,12 +54,12 @@
 									<td th:text="${#dates.format(den.fechaDenuncia,'dd/MM/yyyy')}"></td>
 									<td th:text="${den.Descripcion}"></td>
 									<td th:text="${den.persona.nomPersona}"></td>
-									<td th:text="${den.delito.nomDelito}"></td>
+									<td th:text="${den.delitos.nomDelitos}"></td>
 									<td th:text="${den.comisaria.nomComisaria}"></td>
 								
 									<!-- th:href Redirecciona -->
 									
-									<td><a th:href="@{/den/eliminar?id=}+${p.idDenuncia}">Eliminar</a></td>
+									<td><a th:href="@{/denuncias/eliminar?id=}+${den.idDenuncias}">Eliminar</a></td>
 								</tr>
 							</tbody>
 
