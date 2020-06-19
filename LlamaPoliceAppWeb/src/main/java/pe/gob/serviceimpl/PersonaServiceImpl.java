@@ -42,12 +42,6 @@ public class PersonaServiceImpl implements PersonaService {
 	}
 
 	@Override
-	@Transactional
-	public void eliminar(int idPersona) {
-		pPersona.deleteById(idPersona);
-	}
-
-	@Override
 	public Optional<Persona> buscarId(int idPersona) {
 		return pPersona.findById(idPersona);
 	}

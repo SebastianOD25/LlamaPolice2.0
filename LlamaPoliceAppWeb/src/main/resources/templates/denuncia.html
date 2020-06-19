@@ -77,7 +77,7 @@
 						<label for="delito" class=" col-sm-2 col-form-label">DELITO: </label>
 						<select class="form-control" th:field="*{delito.idDelito}">
 							<option th:each="d: ${listaDelitos}" th:value="${d.idDelito}"
-									th:text="${d.nomDelito}"
+									th:text="${d.nombreDelito}"
 									th:selected="(${d.idDelito} == *{delito.idDelito})">
 							</option>
 						</select>

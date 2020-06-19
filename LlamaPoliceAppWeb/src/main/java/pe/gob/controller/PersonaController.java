@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.gob.model.Persona;
@@ -87,20 +86,6 @@ public class PersonaController {
 				return "redirect:/persona/irRegistrar";
 			}
 		}
-	}
-	
-	@RequestMapping("/eliminar")
-	private String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id ) {
-		try {
-			if (id!= null && id>0) {
-				pService.eliminar(id);
-				model.put("listaPersona", pService.listar());
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			model.put("listaPersona", "Ocurrio un error");
-		}
-		return "listPersona";
 	}
 	
 	@RequestMapping("/listar")
