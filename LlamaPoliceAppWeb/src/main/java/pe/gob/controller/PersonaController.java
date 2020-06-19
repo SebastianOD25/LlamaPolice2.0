@@ -1,6 +1,7 @@
 package pe.gob.controller;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -92,6 +93,26 @@ public class PersonaController {
 	public String listar(Map<String, Object> model) {
 		model.put("listaPersona", pService.listar());
 		return "listPersona";
+	}
+	
+	@RequestMapping("/buscar")
+	public String buscar(Map<String, Object>model, @ModelAttribute Persona persona)
+	throws ParseException{
+		List<Persona> listaPersona;
+		persona.setNomPersona(persona.getNomPersona());
+		listaPersona = pService.buscarNombre(persona.getNomPersona());
+		
+		if(listaPersona.isEmpty()) {
+			model.put("mensaje", "No se encontró");
+		}
+		model.put("listaDenuncias", listaPersona);
+		return "buscar";
+	}
+	
+	@RequestMapping("/irBuscar")
+	public String irBuscar(Model model) {
+		model.addAttribute("persona",new Persona());
+		return "buscar";
 	}
 	
 }

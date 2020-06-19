@@ -34,8 +34,9 @@ public class DenunciaController {
 	private DelitosService dService;
 		
 	@RequestMapping("/")
-	public String irPaginaBienvenido() {
-		return "bienvenido";
+	public String irPaginaListadoDenuncias(Map<String, Object> model) {
+		model.put("listaDenuncias", pService.listar());
+		return "listDenuncias";
 	}
 	
 	@RequestMapping("/irRegistrar")

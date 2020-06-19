@@ -31,7 +31,6 @@ public class Persona implements Serializable{
 	@Column(name="nombrePersona", nullable=false, length=30)
 	private String nombrePersona;
 	
-	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="dniPersona", nullable=false, length=8)
 	private int dni;
 	

@@ -29,7 +29,7 @@ public class ComisariaController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaComisaria", cService.lista());
-		return "listRace";
+		return "listComisaria";
 	}
 
 }
