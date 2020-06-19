@@ -43,6 +43,7 @@ public class ComisariaController {
 		return "comisaria";
 	}
 	
+	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute @Valid Comisaria objComisaria,
 		BindingResult binRes, Model model) throws ParseException{
 		if (binRes.hasErrors()) {
