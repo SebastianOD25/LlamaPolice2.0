@@ -37,7 +37,7 @@ public class Denuncias implements Serializable {
 	@NotNull
 	@Past(message="No puedes seleccionar un dia que NO Existe")
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_de_denuncia")
+	@Column(name="fechaDenuncia")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaDenuncia;
 	

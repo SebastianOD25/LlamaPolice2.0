@@ -36,12 +36,12 @@
 		
 		<div class="container">
 												
-			<form th:action="@{/den/registrar}" method="post" th:object="${den}" enctype="multipart/form-data">
+			<form th:action="@{/denuncias/registrar}" method="post" th:object="${denuncias}" enctype="multipart/form-data">
 			
 				<div class="form-group">
 					
-					<label for="idDelito">ID:</label> 
-					<input type="text" class="form-control" th:field="*{idDelito}"></input>
+					<label for="idDenuncias">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idDenuncias}"></input>
 
 					<div class="form-group">
 						
@@ -77,8 +77,8 @@
 						<label for="delito" class=" col-sm-2 col-form-label">DELITO: </label>
 						<select class="form-control" th:field="*{delito.idDelito}">
 							<option th:each="d: ${listaDelitos}" th:value="${d.idDelito}"
-									th:text="${d.nombreDelito}"
-									th:selected="(${d.idDelito} == *{delito.idDelito})">
+									th:text="${d.nomDelito}"
+									th:selected="(${d.idDelito} == *{delitos.idDelito})">
 							</option>
 						</select>
 						

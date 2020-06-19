@@ -1,7 +1,6 @@
 package pe.gob.controller;
 
 import java.text.ParseException;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -41,12 +40,12 @@ public class DenunciaController {
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistroMascotas(Model model) {
-		model.addAttribute("listaComisarias", cService.lista());
+		model.addAttribute("listaComisaria", cService.lista());
 		model.addAttribute("listaDelitos", dService.lista());		
 		model.addAttribute("comisaria", new Comisaria());
 		model.addAttribute("denuncias", new Denuncias());
 		model.addAttribute("delitos", new Delitos());
-		return "denuncias";
+		return "denuncia";
 	}
 	
 	@RequestMapping("/registrar")
@@ -56,7 +55,7 @@ public class DenunciaController {
 		{
 			model.addAttribute("listaComisarias", cService.lista());
 			model.addAttribute("listaDuenos", dService.lista());					
-			return "denuncias";
+			return "denuncia";
 		}
 		else
 		{
@@ -100,23 +99,4 @@ public class DenunciaController {
 		return "listDenuncias";
 	}
 	
-	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object>model, @ModelAttribute Denuncias denuncias)
-	throws ParseException{
-		List<Denuncias> listaDenuncias;
-		denuncias.setLugar(denuncias.getLugar());
-		listaDenuncias = pService.buscarLugar(denuncias.getLugar());
-		
-		if(listaDenuncias.isEmpty()) {
-			model.put("mensaje", "No se encontró");
-		}
-		model.put("listaDenuncias", listaDenuncias);
-		return "buscar";
-	}
-	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) {
-		model.addAttribute("denuncias",new Denuncias());
-		return "buscar";
-	}
 }
