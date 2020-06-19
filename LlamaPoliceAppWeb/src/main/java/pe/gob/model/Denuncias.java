@@ -41,7 +41,7 @@ public class Denuncias implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_de_denuncia")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date fechaDenuncoa;
+	private Date fechaDenuncia;
 	
 	@NotEmpty(message = "No puede estar vacio")
 	@NotBlank(message = "No puede estar en blanco")
@@ -73,7 +73,7 @@ public class Denuncias implements Serializable {
 		super();
 		this.idDenuncias = idDenuncias;
 		this.lugar = lugar;
-		this.fechaDenuncoa = fechaDenuncoa;
+		this.fechaDenuncia = fechaDenuncoa;
 		Descripcion = descripcion;
 		this.delitos = delitos;
 		this.comisaria = comisaria;
@@ -97,11 +97,11 @@ public class Denuncias implements Serializable {
 	}
 
 	public Date getFechaDenuncoa() {
-		return fechaDenuncoa;
+		return fechaDenuncia;
 	}
 
 	public void setFechaDenuncoa(Date fechaDenuncoa) {
-		this.fechaDenuncoa = fechaDenuncoa;
+		this.fechaDenuncia = fechaDenuncoa;
 	}
 
 	public String getDescripcion() {
