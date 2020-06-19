@@ -22,7 +22,7 @@ import pe.gob.service.ComisariaService;
 @Controller
 @RequestMapping("/comisaria")
 public class ComisariaController {
-	
+
 	@Autowired
 	private ComisariaService cService;
 	
@@ -108,5 +108,6 @@ public class ComisariaController {
 		model.put("listaComisaria", cService.lista());
 		return "listRace";
 	}
-	
+	//testeo
 }
+
