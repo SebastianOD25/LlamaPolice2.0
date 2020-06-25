@@ -18,26 +18,24 @@ import javax.validation.constraints.Past;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "Fiscal")
+@Table(name="Fiscal")
 public class Fiscal implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFiscal;
 	
-	@NotBlank(message = "No puede estar en blanco")
-	@Column(name="codFiscal", nullable=false, length=30)
-	private int codFiscal;
+	@Column(name="telefono", nullable=false, length=6)
+	private int telefono;
+	
+	@Column(name="numFiscal", nullable=false, length=8)
+	private int numFiscal;
 	
 	@NotBlank(message = "No puede estar en blanco")
 	@Column(name="nombreFiscal", nullable=false, length=30)
 	private String nombreFiscal;
-	
-	@NotBlank(message = "No puede estar en blanco")
-	@Column(name="numTelef", nullable=false, length=30)
-	private int numTelef;
 	
 	@NotNull
 	@Past(message="No puedes seleccionar un dia que NO Existe")
@@ -45,21 +43,23 @@ public class Fiscal implements Serializable{
 	@Column(name="fechaNacimiento")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaNacimiento;
+	
 
 	public Fiscal() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Fiscal(int idFiscal, @NotBlank(message = "No puede estar en blanco") int codFiscal,
-			@NotBlank(message = "No puede estar en blanco") String nombreFiscal,
-			@NotBlank(message = "No puede estar en blanco") int numTelef,
-			@NotNull @Past(message = "No puedes seleccionar un dia que NO Existe") Date fechaNacimiento) {
+	public Fiscal(int idFiscal, 
+			int telefono, 
+			int numFiscal,
+			String nombreFiscal,
+			Date fechaNacimiento) {
 		super();
 		this.idFiscal = idFiscal;
-		this.codFiscal = codFiscal;
+		this.telefono = telefono;
+		this.numFiscal = numFiscal;
 		this.nombreFiscal = nombreFiscal;
-		this.numTelef = numTelef;
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -71,12 +71,20 @@ public class Fiscal implements Serializable{
 		this.idFiscal = idFiscal;
 	}
 
-	public int getCodFiscal() {
-		return codFiscal;
+	public int getTelefono() {
+		return telefono;
 	}
 
-	public void setCodFiscal(int codFiscal) {
-		this.codFiscal = codFiscal;
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
+	public int getNumFiscal() {
+		return numFiscal;
+	}
+
+	public void setNumFiscal(int numFiscal) {
+		this.numFiscal = numFiscal;
 	}
 
 	public String getNombreFiscal() {
@@ -87,14 +95,6 @@ public class Fiscal implements Serializable{
 		this.nombreFiscal = nombreFiscal;
 	}
 
-	public int getNumTelef() {
-		return numTelef;
-	}
-
-	public void setNumTelef(int numTelef) {
-		this.numTelef = numTelef;
-	}
-
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -102,5 +102,5 @@ public class Fiscal implements Serializable{
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
+
 }
