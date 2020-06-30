@@ -34,9 +34,6 @@ public class Reporte implements Serializable{
 	@JoinColumn(name="idPolicia", nullable = false)	
 	private Policia policia;
 
-	@ManyToOne
-	@JoinColumn(name="idFiscal", nullable = false)	
-	private Fiscal fiscal;
 	
 	public Reporte() {
 		super();
@@ -46,14 +43,12 @@ public class Reporte implements Serializable{
 	public Reporte(int idReporte, 
 			String descripcion,
 			Denuncias denuncias,
-			Policia policia,
-			Fiscal fiscal) {
+			Policia policia) {
 		super();
 		this.idReporte = idReporte;
 		this.descripcion = descripcion;
 		this.denuncias = denuncias;
 		this.policia = policia;
-		this.fiscal = fiscal;
 	}
 
 	public int getIdReporte() {
@@ -88,12 +83,5 @@ public class Reporte implements Serializable{
 		this.policia = policia;
 	}
 
-	public Fiscal getFiscal() {
-		return fiscal;
-	}
-
-	public void setFiscal(Fiscal fiscal) {
-		this.fiscal = fiscal;
-	}
 	
 }
