@@ -1,0 +1,72 @@
+  
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title>Reporte</title>
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
+		</script>
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css"></link>
+				
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</head>
+
+	<body>
+	
+		<div th:replace="fragments/header :: header"></div>
+
+		<div class="container">
+			<form id="myform">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						
+						<a 	style="border-bottom-color: green" th:href="@{/reporte/irRegistrar}"
+							id="add-row" type="button" class="btn btn-primary btn-md left-block"> 
+							<span class="glyphicon glyphicon-plus"></span> Reporte
+						</a>
+						
+					
+						<table class="table table-bordered table-hover table-striped" id="tab_logic">
+							
+							<thead>
+								<tr>
+									<th class="text-center">CODIGO</th>
+									<th class="text-center">DESCRIPCION</th>
+									<th class="text-center">DENUNCIA</th>
+									<th class="text-center">POLOCIA</th>
+
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="den: ${listaReporte}">
+									
+									<!-- th:text muestra una linea de texto -->
+									
+									<td th:text="${rep.idReporte}"></td>
+									<td th:text="${rep.descripcion}"></td>
+									<td th:text="${rep.denuncias.idDenuncias}"></td>
+									<td th:text="${rep.policia.nomPolicia}"></td>
+								
+									<!-- th:href Redirecciona -->
+									
+									<td><a th:href="@{/reporte/eliminar?id=}+${den.idReporte}">Eliminar</a></td>
+								</tr>
+							</tbody>
+
+						</table>
+
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div th:replace="fragments/footer :: footer"></div>
+
+	</body>
+	
+</html>
