@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="ISO-8859-1"></meta>
+	
+		<title>Denuncia</title>
+	
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<link	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	</head>
+	
+	<body>
+<!-- main banner -->
+	<div class="main-top" id="home">
+		<!-- header -->
+		<header>
+			<div class="container-fluid">
+				<div class="header d-md-flex justify-content-between align-items-center py-sm-4 py-3 px-xl-5 px-lg-3 px-2">
+					<!-- logo -->
+					<div id="logo">
+						<h1><a class="" th:href="@{/denuncias/bienvenido}">Llama Police</a></h1>
+					</div>
+					<!-- //logo -->
+					<!-- nav -->
+					<div class="nav_w3ls">
+						<nav>
+							<label for="drop" class="toggle toogle-2">Menu</label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li class="active"><a th:href="@{/denuncias/listar}">Denunciar</a></li>
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a th:href="@{/comisaria/listar}">Comisarias</a></li>
+								<li><a th:href="@{/delitos/listar}">Delitos</a></li>
+								<li class="mx-lg-2">|</a></li>
+								<li class="mx-lg-2 mx-md-3 my-md-0 my-2 nav-item dropdown no-arrow">
+									<a href="#">[[${#httpServletRequest.remoteUser}]]<span class="nav-item dropdown no-arrow" aria-hidden="true"></span></a>
+									<input type="checkbox" id="drop-2" />
+									 <ul><form id="logoutForm" th:action="@{/logout}" method="post">
+										<li><button onclick="document.getElementById('logoutForm').submit();"
+										type="submit" href="#best" class="drop-text">Log out</button></li>
+									</form></ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<!-- //nav -->
+				</div>
+			</div>
+		</header>
+		
+		<div class="container">
+												
+			<form th:action="@{/denuncias/registrar}" method="post" th:object="${denuncias}" enctype="multipart/form-data">
+			
+				<div class="form-group">
+					
+					<label for="idDelito">ID:</label> 
+					<input type="text" class="form-control" th:field="*{idDenuncias}"></input>
+
+					<div class="form-group">
+						
+						<label 	for="lugar">LUGAR:</label> 
+						<input type="text" th:field="*{lugar}" class="form-control" id="lugar"></input>
+												
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('lugar')}" 
+								th:errors="*{lugar}">
+						</div>
+
+						<label for="fecha_de_denuncia">FECHA DEL DELITO:</label> 
+						<input type="date" th:field="*{fechaDenuncia}" class="form-control" id="fecha_de_denuncia"></input>
+						
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('fechaDenuncia')}"
+								th:errors="*{fechaDenuncia}">
+						</div>
+						
+						<label 	for="Descripcion">DESCRIPCION BREVE:</label> 
+						<input type="text" th:field="*{Descripcion}" class="form-control" id="Descripcion"></input>
+												
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('Descripcion')}" 
+								th:errors="*{Descripcion}">
+						</div>
+						
+						<label for="persona" class=" col-sm-2 col-form-label">Usuario: </label>
+						<select class="form-control" th:field="*{idUsuario.idUsuario}">
+							<option th:each="p: ${listaUsuarios}" th:value="${p.idUsuario}"
+									th:text="${p.nombre}"
+									th:selected="(${p.idUsuario} == *{idUsuario.idUsuario})">
+							</option>
+						</select>
+					
+						<label for="delitos" class=" col-sm-2 col-form-label">DELITO: </label>
+						<select class="form-control" th:field="*{delitos.idDelitos}">
+							<option th:each="d: ${listaDelitos}" th:value="${d.idDelitos}"
+									th:text="${d.nomDelitos}"
+									th:selected="(${d.idDelitos} == *{delitos.idDelitos})">
+							</option>
+						</select>
+						
+						<label for="comisaria" class=" col-sm-2 col-form-label">COMISARIA: </label>
+						<select class="form-control" th:field="*{comisaria.idComisaria}">
+							<option th:each="c: ${listaComisaria}" th:value="${c.idComisaria}"
+									th:text="${c.nomComisaria}"
+									th:selected="(${c.idComisaria} == *{comisaria.idComisaria})">
+							</option>
+						</select>						
+					</div>
+
+				</div>
+
+				<button type="submit" class="btn btn-primary">Aceptar</button>
+				<a href="/pet/listar" class="btn btn-danger">Cancelar</a>
+
+			</form>
+		</div>
+		
+	</body>
+	
+</html>

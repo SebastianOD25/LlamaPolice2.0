@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Delitos</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+	<div class="main-top" id="home">
+			<header>
+			<div class="container-fluid">
+				<div class="header d-md-flex justify-content-between align-items-center py-sm-4 py-3 px-xl-5 px-lg-3 px-2">
+
+					<div id="logo">
+						<h1><a class="" th:href="@{/denuncias/bienvenido}">Llama Police</a></h1>
+					</div>
+					
+					<div class="nav_w3ls">
+						<nav>
+							<label for="drop" class="toggle toogle-2">Menu</label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li class="active"><a th:href="@{/denuncias/listar}">Denunciar</a></li>
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a th:href="@{/comisaria/listar}">Comisarias</a></li>
+								<li><a th:href="@{/delitos/listar}">Delitos</a></li>
+								<li class="mx-lg-2">|</a></li>
+								<li class="mx-lg-2 mx-md-3 my-md-0 my-2 nav-item dropdown no-arrow">
+									<a href="#">[[${#httpServletRequest.remoteUser}]]<span class="nav-item dropdown no-arrow" aria-hidden="true"></span></a>
+									<input type="checkbox" id="drop-2" />
+									 <ul><form id="logoutForm" th:action="@{/logout}" method="post">
+										<li><button onclick="document.getElementById('logoutForm').submit();"
+										type="submit" href="#best" class="drop-text">Log out</button></li>
+									</form></ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					
+				</div>
+			</div>
+		</header>
+		
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">CODIGO</th>
+								<th class="text-center">DELITO</th>
+								<th class="text-center">DESCRIPCION</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="del: ${listaDelitos}">
+								<td th:text="${del.idDelitos}"></td>
+								<td th:text="${del.nomDelitos}"></td>
+								<td th:text="${del.descripcion}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+					
+				</div>
+			</div>
+			<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+			</div>
+		</form>
+	</div>
+
+
+</body>
+</html>
