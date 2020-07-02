@@ -1,4 +1,3 @@
-  
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
@@ -16,8 +15,38 @@
 	</head>
 
 	<body>
-	
-		<div th:replace="fragments/header :: header"></div>
+		<div class="main-top" id="home">
+			<header>
+			<div class="container-fluid">
+				<div class="header d-md-flex justify-content-between align-items-center py-sm-4 py-3 px-xl-5 px-lg-3 px-2">
+
+					<div id="logo">
+						<h1><a class="" th:href="@{/reporte/bienvenido}">Llama Police</a></h1>
+					</div>
+					
+					<div class="nav_w3ls">
+						<nav>
+							<label for="drop" class="toggle toogle-2">Menu</label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li class="active"><a th:href="@{/reporte/listar}">Reporte</a></li>
+								<li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a th:href="@{/denuncias/listar}">Denuncias</a></li>
+								<li class="mx-lg-2">|</a></li>
+								<li class="mx-lg-2 mx-md-3 my-md-0 my-2 nav-item dropdown no-arrow">
+									<a href="#">[[${#httpServletRequest.remoteUser}]]<span class="nav-item dropdown no-arrow" aria-hidden="true"></span></a>
+									<input type="checkbox" id="drop-2" />
+									 <ul><form id="logoutForm" th:action="@{/logout}" method="post">
+										<li><button onclick="document.getElementById('logoutForm').submit();"
+										type="submit" href="#best" class="drop-text">Log out</button></li>
+									</form></ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					
+				</div>
+			</div>
+		</header>
 
 		<div class="container">
 			<form id="myform">
@@ -34,27 +63,24 @@
 							
 							<thead>
 								<tr>
-									<th class="text-center">CODIGO</th>
-									<th class="text-center">DESCRIPCION</th>
+									<th class="text-center">ID</th>
+									<th class="text-center">USUARIO</th>
 									<th class="text-center">DENUNCIA</th>
-									<th class="text-center">POLOCIA</th>
-
 								</tr>
 							</thead>
 							
 							<tbody>
-								<tr th:each="den: ${listaReporte}">
+								<tr th:each="rep: ${listarReporte}">
 									
 									<!-- th:text muestra una linea de texto -->
 									
-									<td th:text="${rep.idReporte}"></td>
-									<td th:text="${rep.descripcion}"></td>
+									<td th:text="${rep.idDenuncias}"></td>
+									<td th:text="${rep.persona.nomPersona}"></td>
 									<td th:text="${rep.denuncias.idDenuncias}"></td>
-									<td th:text="${rep.policia.nomPolicia}"></td>
 								
 									<!-- th:href Redirecciona -->
 									
-									<td><a th:href="@{/reporte/eliminar?id=}+${den.idReporte}">Eliminar</a></td>
+									<td><a th:href="@{/reporte/eliminar?id=}+${rep.idReporte}">Eliminar</a></td>
 								</tr>
 							</tbody>
 
@@ -65,7 +91,6 @@
 			</form>
 		</div>
 
-		<div th:replace="fragments/footer :: footer"></div>
 
 	</body>
 	
