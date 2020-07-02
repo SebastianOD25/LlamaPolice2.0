@@ -1,49 +1,60 @@
 package pe.gob;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import pe.gob.auth.handler.LoginSuccessHandler;
-import pe.gob.serviceimpl.JpaUserDetailsService;
+import pe.gob.serviceimpl.JpaUsuarioDetailsService;
 
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	private AuthenticationSuccessHandler authenticationSuccessHandler;
 
 	@Autowired
-	private JpaUserDetailsService userDetailsService;
-	
+	private JpaUsuarioDetailsService userDetailsService;
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private LoginSuccessHandler successHandler;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
 	
-	/*@Override
+	@Autowired
+    public SpringSecurityConfig(AuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+	}
+	
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		try {
 			http.authorizeRequests()
-				.antMatchers("/race/**").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/dueno/**").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/pet/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").and()
-				.formLogin().successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/race/bienvenido")
-				.permitAll().and().logout().logoutSuccessUrl("/login").permitAll().and().exceptionHandling().accessDeniedPage("/error_403");
+				.antMatchers("/registros/**").permitAll()
+				.antMatchers("/", "/css/**", "/js/**", "/imagenes/**", "/irRegistrar", "/registrar","/login").permitAll()
+				.anyRequest().authenticated()
+				.and().formLogin().loginPage("/login").successHandler(authenticationSuccessHandler).permitAll().and().logout()
+				.permitAll().and().exceptionHandling().accessDeniedPage("/error");
+
 			
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-	}*/
-	
-	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-		build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
-	
-	
 }

@@ -1,7 +1,6 @@
 package pe.gob.controller;
 
 import java.text.ParseException;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -17,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pe.gob.model.Comisaria;
 import pe.gob.model.Delitos;
 import pe.gob.model.Denuncias;
+import pe.gob.model.Usuarios;
 import pe.gob.service.ComisariaService;
 import pe.gob.service.DelitosService;
 import pe.gob.service.IDenunciasService;
+import pe.gob.service.IUsuariosService;
 
 @Controller
 @RequestMapping("/denuncias")
@@ -32,20 +33,31 @@ public class DenunciaController {
 	
 	@Autowired
 	private DelitosService dService;
+	
+	@Autowired
+	private IUsuariosService aService;
 		
+	@RequestMapping("/bienvenido")
+	public String irBienvenido() {
+		return "HomePersona";
+	}
+	
 	@RequestMapping("/")
-	public String irPaginaBienvenido() {
-		return "bienvenido";
+	public String irPaginaListadoDenuncias(Map<String, Object> model) {
+		model.put("listaDenuncias", pService.listar());
+		return "persona/listDenuncias";
 	}
 	
 	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistroMascotas(Model model) {
-		model.addAttribute("listaComisarias", cService.lista());
+	public String irRegistrar(Model model) {
+		model.addAttribute("listaComisaria", cService.lista());
+		model.addAttribute("listaUsuarios", aService.listar());
 		model.addAttribute("listaDelitos", dService.lista());		
-		model.addAttribute("comisaria", new Comisaria());
+		model.addAttribute("comisarias", new Comisaria());
+		model.addAttribute("usuarios", new Usuarios());
 		model.addAttribute("denuncias", new Denuncias());
 		model.addAttribute("delitos", new Delitos());
-		return "denuncias";
+		return "persona/denuncia";
 	}
 	
 	@RequestMapping("/registrar")
@@ -54,8 +66,9 @@ public class DenunciaController {
 		if(binRes.hasErrors()) 
 		{
 			model.addAttribute("listaComisarias", cService.lista());
-			model.addAttribute("listaDuenos", dService.lista());					
-			return "denuncias";
+			model.addAttribute("listaDuenos", dService.lista());
+			model.addAttribute("listaUsuarios", aService.listar());
+			return "persona/denuncia";
 		}
 		else
 		{
@@ -64,7 +77,7 @@ public class DenunciaController {
 				return "redirect:/denuncias/listar";
 			}
 			else {
-				model.addAttribute("mensaje ", "Ocurrió un roche");
+				model.addAttribute("mensaje ", "Ocurrió un problema");
 				return "redirect:/denuncias/irRegistrar";
 			}
 		}
@@ -83,39 +96,14 @@ public class DenunciaController {
 			model.put("mensaje", "Ocurrió un error");
 			model.put("listaDenuncias", pService.listar());
 		}
-		return "listDenuncias";
+		return "persona/listDenuncias";
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaDenuncias", pService.listar());
-		return "listDenuncias";
+		return "persona/listDenuncias";
 	}
 	
-	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object>model, @ModelAttribute Denuncias denuncias)
-	throws ParseException{
-		pService.listarId(denuncias.getIdDenuncias());
-		return "listDenuncias";
-	}
 	
-	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object>model, @ModelAttribute Denuncias denuncias)
-	throws ParseException{
-		List<Denuncias> listaDenuncias;
-		denuncias.setLugar(denuncias.getLugar());
-		listaDenuncias = pService.buscarLugar(denuncias.getLugar());
-		
-		if(listaDenuncias.isEmpty()) {
-			model.put("mensaje", "No se encontró");
-		}
-		model.put("listaDenuncias", listaDenuncias);
-		return "buscar";
-	}
-	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) {
-		model.addAttribute("denuncias",new Denuncias());
-		return "buscar";
-	}
 }

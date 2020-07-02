@@ -11,8 +11,8 @@ import pe.gob.service.DelitosService;
 
 
 @Controller
-@RequestMapping("/delitos")
-public class DelitosController {
+@RequestMapping("/delitos2")
+public class DelitosController2 {
 	
 	@Autowired
 	private DelitosService cService;
@@ -25,13 +25,13 @@ public class DelitosController {
 	@RequestMapping("/")
 	public String irPaginaListadoDelitoss(Map<String, Object> model) {
 		model.put("listaDelitos", cService.lista());
-		return "listDelitos";
+		return "policia/listDelitos2";
 	}
 
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaDelitos", cService.lista());
-		return "listDelitos";
+		return "policia/listDelitos2";
 	}
 	
 }

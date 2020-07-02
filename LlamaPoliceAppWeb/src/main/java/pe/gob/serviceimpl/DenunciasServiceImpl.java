@@ -16,7 +16,7 @@ public class DenunciasServiceImpl implements IDenunciasService{
 
 	@Autowired
 	private IDenunciasRepository dDenuncias;
-	
+
 	@Override
 	@Transactional
 	public boolean insertar(Denuncias den) {
@@ -69,7 +69,5 @@ public class DenunciasServiceImpl implements IDenunciasService{
 	public List<Denuncias> buscarComisaria(String nomComisaria) {
 		return dDenuncias.buscarComisaria(nomComisaria);
 	}
-	
-	
 	
 }

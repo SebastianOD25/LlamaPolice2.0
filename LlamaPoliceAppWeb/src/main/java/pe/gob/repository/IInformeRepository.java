@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import pe.gob.model.Persona;
+import pe.gob.model.Informe;
 
 @Repository
-public interface IPersonaRepository extends JpaRepository<Persona, Integer>{
+public interface IInformeRepository extends JpaRepository<Informe, Integer>{
 	
-	@Query("from Persona p where p.nombrePersona like %:nombrePersona%")
-	List<Persona> buscarNombre(@Param("nombrePersona") String nombrePersona);
+	@Query("from Informe i where i.Respuesta like %:Respuesta%")
+	List<Informe> buscarInforme(@Param("Respuesta") String Respuesta);
 	
 }

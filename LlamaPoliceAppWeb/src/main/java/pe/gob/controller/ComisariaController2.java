@@ -16,8 +16,8 @@ import pe.gob.model.Comisaria;
 import pe.gob.service.ComisariaService;
 
 @Controller
-@RequestMapping("/comisaria")
-public class ComisariaController {
+@RequestMapping("/comisaria2")
+public class ComisariaController2 {
 
 	@Autowired
 	private ComisariaService cService;
@@ -30,7 +30,7 @@ public class ComisariaController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaComisaria", cService.lista());
-		return "persona/listComisaria";
+		return "policia/listComisaria2";
 	}
 	
 	@RequestMapping("/buscar")
@@ -42,7 +42,7 @@ public class ComisariaController {
 			model.put("mensaje", "No se encontró");
 		}
 		model.put("listaComisarias", listaComisarias);
-		return "persona/listComisaria";
+		return "policia/listComisaria2";
 	}
 	
 
